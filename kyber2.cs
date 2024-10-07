@@ -15,7 +15,7 @@ namespace WindowsFormsApp2
     {
         public partial class Form1 : Form
         {
-            private const string FilePath = "todolist.txt"; // Путь по умолчанию для сохранения задач
+            private const string FilePath = "tasks.txt"; 
 
             public Form1()
             {
@@ -24,7 +24,7 @@ namespace WindowsFormsApp2
 
             private void MainForm_Load(object sender, EventArgs e)
             {
-                LoadTasks(); // На загрузке формы загружаем задачи
+                LoadTasks(); // Load tasks from file
             }
 
             private void LoadTasks()
@@ -32,11 +32,11 @@ namespace WindowsFormsApp2
                 if (File.Exists(FilePath))
                 {
                     string[] tasks = File.ReadAllLines(FilePath);
-                    ListBox1.Items.AddRange(tasks); // Добавляем задачи в ListBox
+                    ListBox1.Items.AddRange(tasks); // Add tasks to ListBox
                 }
             }
 
-            private void button1_Click(object sender, EventArgs e) // Кнопка "Добавить"
+            private void button1_Click(object sender, EventArgs e) // Button "Add"
             {
                 string task = TextBox1.Text.Trim();
                 if (!string.IsNullOrEmpty(task))
@@ -68,7 +68,7 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    MessageBox.Show("Введите текст задачи для удаления.");
+                    MessageBox.Show("Add text to delete.");
                 }
             }
 
@@ -96,25 +96,6 @@ namespace WindowsFormsApp2
                     }
                 }
             }
-
-            private void SaveTasks()
-            {
-                File.WriteAllLines(FilePath, ListBox1.Items.Cast<string>());
-            }
-
-            private void textBox1_TextChanged(object sender, EventArgs e) // Событие изменения текста
-            {
-                // Здесь можно добавить код, если что-то должно произойти при изменении текста
-            }
-
-            private void listBox1_SelectedIndexChanged(object sender, EventArgs e) // Событие выбора элемента
-            {
-                // Можно добавить код, если нужно что-то сделать при изменении выбора в ListBox
-            }
-
-
-          
-
     }
     }
 
