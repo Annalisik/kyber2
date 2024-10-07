@@ -47,11 +47,11 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    MessageBox.Show("Введите задачу.");
+                    MessageBox.Show("Add task.");
                 }
             }
 
-            private void button2_Click(object sender, EventArgs e) // Кнопка "Удалить"
+            private void button2_Click(object sender, EventArgs e) // Button "Delete"
             {
                 string taskToRemove = TextBox1.Text.Trim();
                 if (!string.IsNullOrEmpty(taskToRemove))
@@ -72,27 +72,23 @@ namespace WindowsFormsApp2
                 }
             }
 
-            private void button3_Click(object sender, EventArgs e) // Кнопка "Открыть файл"
+            private void button3_Click(object sender, EventArgs e) // Button "Open file"
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                //using (StreamWriter writer = new StreamWriter("tasks.txt"))
-                //{
-               
-                
-
-                openFileDialog.InitialDirectory = "C:\\";
+              
+                   openFileDialog.InitialDirectory = "C:\\";
                    openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                  openFileDialog.FilterIndex = 1;
-                    openFileDialog.RestoreDirectory = true;
+                   openFileDialog.FilterIndex = 1;
+                   openFileDialog.RestoreDirectory = true;
 
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = openFileDialog.FileName;
-                        // Читаем содержимое файла и добавляем в ListBox
+                        // Read file and add it to ListBox
                         string[] tasks = File.ReadAllLines(filePath);
-                        ListBox1.Items.Clear(); // Очищаем существующий список
-                        ListBox1.Items.AddRange(tasks); // Добавляем задачи из файла
+                        ListBox1.Items.Clear(); // ОClear existing list
+                        ListBox1.Items.AddRange(tasks); // Add tasks from file
                     }
                 }
             }
